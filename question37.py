@@ -61,7 +61,7 @@ print("★Edges: ", G.edges())
 s = "\n★Edges: " + str(G.edges()) + '\n'
 f.write(s)
 
-s = "---" + '\n'
+s = '---\n'
 f.write(s)
 
 # Graphオブジェクトの情報
@@ -116,7 +116,7 @@ print("nx.all_neighbors of '0': ", list(nx.all_neighbors(G, '0')))
 s = "nx.all_neighbors of '0': " + str(list(nx.all_neighbors(G, '0'))) + '\n'
 f.write(s)
 
-s = "---" + '\n'
+s = '---\n'
 f.write(s)
 
 # ノードと隣接しているノードの数
@@ -144,7 +144,7 @@ print("Sum of combinations(nＣ3 組み合わせ総数): ", len(list(itr.combina
 s = "Sum of combinations(nＣ3 組み合わせ総数): " + str(len(list(itr.combinations(nodes, 3)))) + '\n'
 f.write(s)
 
-s = "---" + '\n'
+s = '---\n'
 f.write(s)
 
 # nC3 組み合わせ総当たり
@@ -181,14 +181,14 @@ print(list_degrees)
 s = "list_degrees: " + str(list_degrees) + '\n'
 f.write(s)
 
-s = "---" + '\n'
+s = '--- 組み合わせ総当たり\n'
 f.write(s)
 
-# 15C3
+# 15C3 組み合わせの総当たり
 for x in itr.combinations(nodes, 3):
     print("x: ", x)
     #('0', '1', '2')
-    s = "x: " + str(x) + '\n'
+    s = "---\nx: " + str(x) + '\n'
     f.write(s)
 
     node_0, node_1, node_2 = x
@@ -196,53 +196,47 @@ for x in itr.combinations(nodes, 3):
     # node_1 = x[1]
     # node_2 = x[2]
     print("node_0: ", node_0, type(node_0))
-
-    # 既出ノードのリスト
-    # exist_node = []
-
-    # 出現回数
-    count_0 = 0
-    count_1 = 0
-    count_2 = 0
+    # node_0:  0 <class 'str'>
 
     # 初期化
     get_node = []
 
-    # node_0 のターゲットノードリスト
+    # node_0 のターゲットノードリスト作成
     # 指定したノードに対する、隣接しているノードの一覧
     node_0_nodes = list(nx.all_neighbors(G, node_0))
     print("node_0_nodes: ", node_0_nodes, type(node_0_nodes))
-    #  ['1', '2']
+    #  ['1', '2'] <class 'list'>
     s = "node_0_nodes: " + str(node_0_nodes) + '\n'
     f.write(s)
 
-    # node_1 のターゲットノードリスト
+    # node_1 のターゲットノードリスト作成
     # 指定したノードに対する、隣接しているノードの一覧
     node_1_nodes = list(nx.all_neighbors(G, node_1))
     print("node_1_nodes: ", node_1_nodes, type(node_1_nodes))
-    #  ['0', '2', '3']
+    #  ['0', '2', '3'] <class 'list'>
     s = "node_1_nodes: " + str(node_1_nodes) + '\n'
     f.write(s)
 
-    # node_2 のターゲットノードリスト
+    # node_2 のターゲットノードリスト作成
     # 指定したノードに対する、隣接しているノードの一覧
     node_2_nodes = list(nx.all_neighbors(G, node_2))
     print("node_2_nodes: ", node_0_nodes, type(node_2_nodes))
-    #  ['0', '1', '3', '4']
+    #  ['0', '1', '3', '4'] <class 'list'>
     s = "node_2_nodes: " + str(node_2_nodes) + '\n'
     f.write(s)
 
-    # 取得済みノード一覧に、node_0 のターゲットノード一覧のノードが含まれていない場合、これを取得済みノード一覧に追加する
+    # 取得済みノード一覧に、node_0 のターゲットノード一覧の中のノードが含まれていない場合、これを取得済みノード一覧に追加する
     for n in range(len(node_0_nodes)):
         # print("n: ", n)
         if node_0 != node_0_nodes[n]:
+            # node_0 は無条件に追加する
             get_node.append(node_0_nodes[n])
 
     print("get_node: ", get_node)   # ['1', '2']
     s = "get_node: " + str(get_node) + '\n'
     f.write(s)
 
-    # 取得済みノード一覧に、node_1 のターゲットノード一覧のノードが含まれていない場合、これを取得済みノード一覧に追加する
+    # 取得済みノード一覧に、node_1 のターゲットノード一覧の中のノードが含まれていない場合、これを取得済みノード一覧に追加する
     for n in range(len(node_1_nodes)):
         nothing = 0
         for m in range(len(get_node)):
@@ -263,7 +257,7 @@ for x in itr.combinations(nodes, 3):
     s = "get_node: " + str(get_node) + '\n'
     f.write(s)
 
-    # 取得済みノード一覧に、node_2 のターゲットノード一覧のノードが含まれていない場合、これを取得済みノード一覧に追加する
+    # 取得済みノード一覧に、node_2 のターゲットノード一覧の中のノードが含まれていない場合、これを取得済みノード一覧に追加する
     for n in range(len(node_2_nodes)):
         nothing = 0
         for m in range(len(get_node)):
@@ -284,33 +278,38 @@ for x in itr.combinations(nodes, 3):
     s = "get_node: " + str(get_node) + '\n'
     f.write(s)
 
-    s = "---" + '\n'
+    s = '---\n'
     f.write(s)
 
-    # エッジ数の合計
+    # ノード数の合計
+    # ノード数は取得済みノード一覧の中の要素数
     sum_count = len(get_node)
     print("sum_count(len(get_node)): ", sum_count)
     s = "sum_count(len(get_node)): " + str(sum_count) + '\n'
     f.write(s)
 
+    s = '---\n'
+    f.write(s)
+
     # ここまでの最大値を更新
+    s = '(' + node_0 + ', ' + node_1 + ', ' + node_2 + ') : ' + str(node_0) + ', ' + str(node_1) + ', ' + str(node_2) + ', ' + ' Sum: ' + str(sum_count) + '\n\n'
     if count_max <= sum_count:
-        # 同値も挙げてGrepする
+        # 同値（==）も挙げておいて、Grepで確認する
         count_max = sum_count
         node_0_max = node_0
         node_1_max = node_1
         node_2_max = node_2
 
-        s = '\nMax:' + '(' + node_0_max + ', ' + node_1_max + ', ' + node_2_max + ') : ' + 'Sum: ' + str(count_max) + '\n\n'
-        f.write(s)
-    else:
-        s = '(' + node_0 + ', ' + node_1 + ', ' + node_2 + ') : ' + str(node_0) + ', ' + str(node_1) + ', ' + str(count_2) + ' length: ' + str(sum_count) + '\n\n'
-        f.write(s)
+        # 見出し
+        s = '\n★Max: ' + s
 
+    f.write(s)
 
+# 最終結果
 print("★Result: ", node_0_max, node_1_max, node_2_max, count_max)
-s = '\n★Result: ' + node_0_max + ' ' + node_1_max + ' ' + node_2_max + ' ' + 'Sum: ' + str(count_max) + '\n'
+s = '\n★Result: node_0 = ' + str(node_0_max) + ', node_1 = ' + str(node_1_max) + ', node_2 = ' + str(node_2_max) + ', Sum: ' + str(count_max) + '\n'
 f.write(s)
+
 f.close()
 
 # ネットワークの可視化
