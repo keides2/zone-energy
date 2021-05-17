@@ -133,6 +133,10 @@ for node in G.nodes():
     s = "Node " + str(node) + ", G.degree(隣接しているノードの数) " + str(G.degree(node)) + '\n'
     f.write(s)
 
+# ネットワークの可視化
+nx.draw(G, with_labels = True, node_size = 200)
+plt.show()
+
 #################################################
 # nC3 組み合わせ
 nodes = G.nodes()   # ['0', '1', '2', '3', '4', '5']
@@ -312,6 +316,3 @@ f.write(s)
 
 f.close()
 
-# ネットワークの可視化
-nx.draw(G, with_labels = True, node_size = 200)
-plt.show()
